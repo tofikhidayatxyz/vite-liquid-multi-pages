@@ -1,0 +1,255 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.css');
+@import url('https://unpkg.com/boxicons@2.1.4/css/boxicons.css');
+
+// Overide
+html,
+body {
+  overflow-x: hidden;
+}
+body.body-grey {
+  background: var(--body-grey);
+}
+body.page-navigation {
+  padding-bottom: 61px;
+}
+
+@import './plugins/bootstrap.scss';
+
+@function is-light($color) {
+  @if (lightness($color) > 70%) {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
+// Overide bootstrap variable
+
+.wrapper {
+  max-width: 420px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: auto;
+  // overflow: hidden;
+  @media screen and (max-width: 470px) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+// loop font size from 1 to 100
+
+@for $i from 0 through 100 {
+  .fs-#{$i} {
+    font-size: #{$i}px !important;
+  }
+  .opacity-#{$i} {
+    opacity: #{$i / 100} !important;
+  }
+}
+
+@for $i from -50 through 100 {
+  .t-#{$i} {
+    top: #{$i}px;
+  }
+  .l-#{$i} {
+    left: #{$i}px;
+  }
+  .b-#{$i} {
+    bottom: #{$i}px;
+  }
+  .r-#{$i} {
+    right: #{$i}px;
+  }
+}
+
+// Loop font weight from 100 to 900 each 50
+
+@for $i from 100 through 900 {
+  @if $i % 50 == 0 {
+    .fw-#{$i} {
+      font-weight: #{$i} !important;
+    }
+  }
+}
+
+// loop Rounded from 1 to 100
+@for $i from 0 through 100 {
+  .rounded-#{$i} {
+    border-radius: #{$i}px !important;
+  }
+  @if ($i < 100) {
+    .h-#{$i} {
+      height: #{$i}px !important;
+    }
+    .w-#{$i} {
+      width: #{$i}px !important;
+    }
+    .f-#{$i} {
+      flex: 0 0 #{$i}px !important;
+    }
+    // AAdding top left right bottom
+    @if ($i > 6) {
+      .pt-#{$i} {
+        padding-top: #{$i}px !important;
+      }
+      .pl-#{$i} {
+        padding-left: #{$i}px !important;
+      }
+      .pr-#{$i} {
+        padding-right: #{$i}px !important;
+      }
+      .pb-#{$i} {
+        padding-bottom: #{$i}px !important;
+      }
+    }
+  }
+  .z-#{$i} {
+    z-index: #{$i} !important;
+  }
+}
+
+// text decoration
+.text-line-through {
+  text-decoration: line-through;
+}
+
+.text-divider {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-wrap: nowrap;
+  color: var(--muted-dark);
+  font-size: 12px;
+
+  &:before {
+    content: '';
+    height: 0.5px;
+    width: 100%;
+    background: #c2c2c2;
+    margin-right: 10px;
+  }
+
+  &:after {
+    content: '';
+    height: 0.5px;
+    width: 100%;
+    background: #c2c2c2;
+    margin-left: 10px;
+  }
+}
+
+// button style
+.btn.submit {
+  font-weight: 500;
+  &:disabled {
+    background: #f4f4f4;
+    border: var(--bg-disabled);
+    color: var(--text-disabled);
+  }
+}
+// Badges
+.badge {
+  border-radius: 4px;
+}
+.badge-danger {
+  background-color: rgba(var(--danger-rgb), 0.2);
+  color: var(--danger) !important;
+}
+// Primary
+.badge-primary {
+  background-color: rgba(var(--primary-rgb), 0.2);
+  color: var(--primary) !important;
+}
+// Secondary
+.badge-secondary {
+  background-color: rgba(var(--secondary-rgb), 0.2);
+  color: var(--secondary) !important;
+}
+// Success
+.badge-success {
+  background-color: rgba(var(--success-rgb), 0.2);
+  color: var(--success) !important;
+}
+// Info
+.badge-info {
+  background-color: rgba(var(--info-rgb), 0.2);
+  color: var(--info) !important;
+}
+// Warning
+.badge-warning {
+  background-color: rgba(var(--warning-rgb), 0.2);
+  color: var(--warning) !important;
+}
+
+// Alert success
+.alert-success {
+  background: var(--alert-bg-success);
+  color: var(--alert-text-success);
+  border-color: var(--alert-text-success);
+}
+
+// List of borders
+.border-doted {
+  border-style: dotted;
+}
+.border-dashed {
+  border-style: dashed;
+}
+
+// Scrollbar style
+.hide-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scroll {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+}
+// end Scrollbar style
+.no-wrap {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.single-line {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// Loop bootstrap colors and make background and text hover
+@each $color, $value in $theme-colors {
+  .bg-hover-#{$color}:hover {
+    background-color: $value !important;
+  }
+  .text-hover-#{$color}:hover {
+    color: $value !important;
+  }
+}
+// Overide button and any elemtn styles
+@each $color, $value in $theme-colors {
+  .btn-#{$color} {
+    --btn-bg: var(--#{$color});
+    --btn-border-color: var(--#{$color});
+    --btn-hover-bg: rgba(var(--#{$color}-rgb), 0.7);
+    --btn-hover-border-color: rgba(var(--#{$color}-rgb), 0);
+    --btn-active-bg: rgba(var(--#{$color}-rgb), 0.8);
+    --btn-active-border-color: rgba(var(--#{$color}-rgb), 0);
+    --btn-disabled-bg: rgba(var(--#{$color}-rgb), 0.2);
+    --btn-disabled-border-color: rgba(var(--#{$color}-rgb), 0);
+  }
+  .btn-outline-#{$color} {
+    --btn-color: var(--#{$color});
+    --btn-border-color: var(--#{$color});
+    --btn-hover-color: #fff;
+    --btn-hover-bg: rgba(var(--#{$color}-rgb), 0.9);
+    --btn-hover-border-color: rgba(var(--#{$color}-rgb), 0);
+    --btn-active-bg: rgba(var(--#{$color}-rgb), 0.8);
+    --btn-active-border-color: rgba(var(--#{$color}-rgb), 0);
+    --btn-disabled-border-color: rgba(var(--#{$color}-rgb), 0);
+  }
+}

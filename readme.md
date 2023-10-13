@@ -1,0 +1,1 @@
+## Vite template for liquid
